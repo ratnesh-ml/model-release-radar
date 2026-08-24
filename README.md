@@ -2,6 +2,8 @@
 
 Model Release Radar is an interactive, client-side control-room prototype for an ML release conversation. It lets a reviewer choose a synthetic model run, adjust quality, latency, and drift thresholds, and inspect the evidence behind a simulated **Release**, **Review**, or **Hold** recommendation.
 
+**Live demo:** [model-release-radar-ratnezhsingh-6317.vercel.app](https://model-release-radar-ratnezhsingh-6317.vercel.app)
+
 ## Why this project exists
 
 Model projects are often shown as training notebooks or isolated metrics. This app demonstrates the next question: how can an ML practitioner make a release decision transparent, inspectable, and open to challenge? It is a portfolio-scale learning application, not a production governance service.
