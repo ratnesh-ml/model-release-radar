@@ -1,24 +1,28 @@
 # Model Release Radar
 
-Model Release Radar is an interactive, client-side control-room prototype for an ML release conversation. It lets a reviewer choose a synthetic model run, adjust quality, latency, and drift thresholds, and inspect the evidence behind a simulated **Release**, **Review**, or **Hold** recommendation.
+[![Validate](https://github.com/ratnesh-ml/model-release-radar/actions/workflows/validate.yml/badge.svg)](https://github.com/ratnesh-ml/model-release-radar/actions/workflows/validate.yml)
 
 **Live demo:** [model-release-radar-ratnezhsingh-6317.vercel.app](https://model-release-radar-ratnezhsingh-6317.vercel.app)
 
-## Why this project exists
+I built Model Release Radar to make the conversation after model evaluation more concrete. A single score does not tell a reviewer whether a candidate should move forward. I wanted to put quality, latency, drift, and an explicit decision policy in one small interface where the outcome can be challenged.
 
-Model projects are often shown as training notebooks or isolated metrics. This app demonstrates the next question: how can an ML practitioner make a release decision transparent, inspectable, and open to challenge? It is a portfolio-scale learning application, not a production governance service.
+The app is a client-side control-room prototype. A reviewer selects a synthetic candidate run, adjusts F1, latency, and drift gates, then sees a traceable **Release**, **Review**, or **Hold** discussion prompt. Everything is synthetic and stays in the browser.
 
-## Features
+## What I was practising
 
-| Capability | What it does |
+| Release question | What the demo makes visible |
 | --- | --- |
-| Candidate runs | Switches among three labelled synthetic model candidates. |
-| Policy controls | Lets the reviewer tune minimum F1, maximum latency, and maximum drift thresholds. |
-| Traceable decision | Converts visible gates into a clear Release, Review, or Hold outcome. |
-| Evidence profile | Shows quality, latency headroom, and drift headroom without relying on a single opaque score. |
-| Safe handoff | Generates a browser-only review-note confirmation; no data is sent or stored remotely. |
+| Is quality good enough? | A tunable minimum-F1 threshold and the candidate’s observed score. |
+| Is it fast enough for the intended context? | A maximum-latency gate and visible headroom. |
+| Has the input distribution moved too far? | A maximum-drift gate and a separate drift signal. |
+| What should happen when evidence is mixed? | A named Release, Review, or Hold outcome with the failed gates exposed. |
+| Where does the data go? | Nowhere: the candidates, gates, and toast-style handoff are browser-only demo state. |
 
-## Run locally
+## Why this project belongs in my AI/ML portfolio
+
+I am interested in the engineering work around a model, not only training it. This project is my portfolio-scale exercise in making a release decision inspectable. The interface does not replace governance; it helps show what a reviewer needs to ask before a model is labelled ready.
+
+## Run it locally
 
 ```bash
 pnpm install
@@ -34,12 +38,14 @@ pnpm build
 
 ## Scope boundary
 
-All runs, thresholds, approvals, and output recommendations are synthetic. This interface does not connect to a registry, monitoring service, database, or production approval workflow. It should not be presented as an automated model-risk or governance system.
+All candidates, thresholds, approvals, and recommendations are synthetic. The app does not connect to a registry, monitoring service, database, approval owner, or production deployment workflow. It is not an automated model-risk or governance system.
 
-## Design
+## Design and implementation notes
 
-Model Release Radar uses a colder release-control language: black and white audit surfaces, squared evidence panels, and cobalt only for active thresholds and evidence signals. The supplied Meta, Apple, and Uber design analyses informed broad principles of hierarchy and interaction only; no proprietary asset, font, source code, trademark, or layout was copied.
+I used a colder **Gate Room** visual language: black-and-white audit surfaces, squared evidence panels, and cobalt only for active thresholds and evidence signals. The supplied design analyses influenced high-level hierarchy and interaction principles only; no proprietary asset, font, trademark, source code, or layout was copied.
 
-## License
+## Verification and license
 
-MIT. Generated visual assets and synthetic demonstration inputs only.
+The Node 22 workflow runs `pnpm check` and `pnpm build` on pushes and pull requests. This demo uses generated visual assets and synthetic inputs only.
+
+MIT licensed; see [LICENSE](LICENSE).
