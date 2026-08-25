@@ -6,17 +6,21 @@
 
 I built Model Release Radar to make the conversation after model evaluation more concrete. A single score does not tell a reviewer whether a candidate should move forward. I wanted to put quality, latency, drift, and an explicit decision policy in one small interface where the outcome can be challenged.
 
-The app is a client-side control-room prototype. A reviewer selects a synthetic candidate run, adjusts F1, latency, and drift gates, then sees a traceable **Release**, **Review**, or **Hold** discussion prompt. Everything is synthetic and stays in the browser.
+The app is a client-side control-room prototype. A reviewer selects a synthetic candidate run, applies a policy, inspects the evidence, and sees a traceable **Release**, **Review**, or **Hold** discussion prompt. Everything is synthetic and stays in the browser.
 
 ## What I was practising
 
 | Release question | What the demo makes visible |
 | --- | --- |
-| Is quality good enough? | A tunable minimum-F1 threshold and the candidate’s observed score. |
-| Is it fast enough for the intended context? | A maximum-latency gate and visible headroom. |
+| Is quality good enough? | A tunable minimum-F1 threshold and the candidate’s observed synthetic score. |
+| Is it fast enough for the intended context? | A maximum-latency gate, visible headroom, and a deterministic mini-trend. |
 | Has the input distribution moved too far? | A maximum-drift gate and a separate drift signal. |
+| Is confidence quality acceptable? | A small calibration-error gate with an explicit fixed review limit. |
+| Can different review styles be compared? | Balanced, strict, and latency-sensitive policy presets plus threshold overrides. |
+| What does the candidate look like against another? | A selected-baseline comparison with quality, latency, and drift deltas. |
+| What is behind a gate? | An evidence drawer with deterministic synthetic trends, review roles, and a gate-by-gate explanation. |
 | What should happen when evidence is mixed? | A named Release, Review, or Hold outcome with the failed gates exposed. |
-| Where does the data go? | Nowhere: the candidates, gates, and toast-style handoff are browser-only demo state. |
+| Can the discussion be captured? | Up to four browser-local review snapshots and a downloadable local Markdown review brief. |
 
 ## Why this project belongs in my AI/ML portfolio
 
@@ -38,7 +42,7 @@ pnpm build
 
 ## Scope boundary
 
-All candidates, thresholds, approvals, and recommendations are synthetic. The app does not connect to a registry, monitoring service, database, approval owner, or production deployment workflow. It is not an automated model-risk or governance system.
+All candidates, thresholds, approvals, deterministic history points, and recommendations are synthetic. Browser-local review snapshots and downloaded briefs are demonstration artifacts only. The app does not connect to a registry, monitoring service, database, approval owner, or production deployment workflow. It is not an automated model-risk or governance system.
 
 ## Design and implementation notes
 
